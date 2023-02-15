@@ -1,0 +1,21 @@
+{
+"manifest_version": 3,
+  "name": "Url Saver Grouped",
+  "version": "1.0",
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "js": [
+        "popup.js"
+      ],
+      "matches": ["<all_urls>"]
+    }
+  ],
+  "permissions": [
+    "storage",
+    "notifications",
+    "tabs"
+  ]
+}
