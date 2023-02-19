@@ -6,8 +6,8 @@ function getKeyByValue(object, value) {
 
 function update(){
 	const groupList = document.getElementById('groupList');
+	onLoaded;
 	//Clear the groupings
-
 	var child = groupList.lastChild;
 	while(child){
 		groupList.removeChild(child)
@@ -15,6 +15,7 @@ function update(){
 	}
 
 	for (let [key, value] of groups){
+		console.log("Loop values", key, value);
 		//collector of parts
 		const newGroup = document.createElement("div");
 		newGroup.setAttribute("class", "form-centerWrapper")
@@ -50,6 +51,18 @@ function update(){
 	}
 }
 
+function onLoaded(){
+	chrome.storage.sync.get("ManageTabUrl", function(items) {
+		for (let key in items) {
+			console.log(key, items[key])
+			for (let id in items[key]){
+				console.log(items[key][id])
+				groups.set(id, items[key][id])
+			}
+		}
+	});
+}
+
 function addGroup(){
 	var groupName = document.getElementById('groupName');
 	console.log("adding group to url management: " + groupName.value);
@@ -58,18 +71,7 @@ function addGroup(){
 	update();
 }
 
-
-function onLoaded(){
-	chrome.storage.sync.get("ManageTabUrl", function(items) {
-		for (let key in items) {
-			console.log(key, items[key])
-		}
-	});
-	update();
-}
-
 function save(id) {
-	console.log(id)
 	//get all tabs in current window
 	chrome.tabs.query({ currentWindow: true }, function(tabs) {
 	var urlArr = [];
@@ -84,7 +86,7 @@ function save(id) {
 	chrome.storage.sync.set(
 		{ "ManageTabUrl": Object.fromEntries(groups) }
 	);
-  update();
+	update();
 }
 
 function load(id) {
@@ -95,9 +97,11 @@ function load(id) {
 }
 
 
-window.onload = onLoaded;
-document.addEventListener('DOMContentLoaded', function() {
+window.onload = update;
+document.addEventListener('DOMContentLoaded', function() {	
 	var buttonSubmit = document.getElementById("submit-btn");
 	buttonSubmit.addEventListener('click', addGroup)
-});
 
+	onLoaded();
+	update();
+});
