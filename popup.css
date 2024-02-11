@@ -1,5 +1,5 @@
 body {
-    width: 50rem;
+    min-width: 200px;
   }
   
   ul {
@@ -22,4 +22,18 @@ body {
   p {
     margin: 0;
   }
+
   
+.input-container {
+  height: 50px;
+  position: relative;
+  width: 50%;
+}
+  
+.add-group-div{
+  flex-direction: row;
+  display: flex;
+  max-height: 50;
+}
+
+

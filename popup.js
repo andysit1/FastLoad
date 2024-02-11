@@ -21,6 +21,7 @@ function update(){
 		newGroup.setAttribute("class", "form-centerWrapper")
 		//group name
 		const groupName = document.createElement("div");
+		groupName.setAttribute("class", "subtitle");
 		groupName.innerHTML = key;
 
 		//control buttons

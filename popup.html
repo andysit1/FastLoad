@@ -2,25 +2,24 @@
 <html>
     <head>
         <script src="popup.js"></script>
-		<link href="button.css" rel="stylesheet" type="text/css">
+		<link href="popup1.css" rel="stylesheet" type="text/css">
     </head>
     <body>
-		<form class="form-container">
-			<div class="form-title">
+		<form class="form">
+			<div class="title">
 				<h2>
 					Fast Reload
 				</h2>
+			</div>		
+			<div class="input-container">
+				<input type="text" class="input" id="groupName" value="..."/>
+				<input type="button" class='submit'id="submit-btn" value="submit"/>
+				<div id="groupList"></div>	
 			</div>
-
-		<div class="form-groups">			
 		</div>
 
-      <div class="form-centerWrapper">
-		<div class="add-group-div">
-			<input type="text" id="groupName" value="..."/>
-			<input type="button" class='button'id="submit-btn" value="submit"/>
-		</div>
-		<div class="group-list-div" id="groupList"></div>
+
+		
     </body>
 
 </html>
